@@ -1,4 +1,4 @@
-// 질문 데이터
+// 질문 데이터 - 여기서 직접 수정하세요!
 const questions = [
     {
         question: "친구가 고민 상담을 한다. 그런데 이 고민...",
@@ -86,38 +86,27 @@ const questions = [
     }
 ];
 
-// 기본 질문 데이터 (복원용)
-const defaultQuestions = JSON.parse(JSON.stringify(questions));
-
 // 결과 데이터
 const results = {
     T: {
-        title: "매우 T형 - 로봇 그 자체",
+        title: "대문자 T - 이성의 화신신",
         description: "당신은 완전한 로봇입니다! 감정보다는 논리와 효율성을 중시하는 타입이에요. 문제 해결에 능숙하고 객관적인 판단을 잘 내리는 편이죠. 하지만 가끔은 감정적 공감이 부족할 수 있어요.",
-        emoji: "🤖",
-        compatible: ["T", "t"],
-        incompatible: ["F", "f"]
+        emoji: "🤖"
     },
     t: {
-        title: "비교적 T형 - 감정이 있는 로봇",
+        title: "소문자 t - 감정이 있는 로봇",
         description: "당신은 감정이 있는 로봇입니다! 논리적이면서도 어느 정도 감정적 공감을 할 수 있는 균형잡힌 타입이에요. 상황에 따라 T와 F를 적절히 활용하는 편이죠.",
-        emoji: "🤔",
-        compatible: ["T", "t", "f"],
-        incompatible: ["F"]
+        emoji: "🤔"
     },
     f: {
-        title: "비교적 F형 - 공감 중시",
+        title: "대문자 F - 상시 대기 수도꼭지지",
         description: "당신은 공감을 중시하는 타입입니다! 감정적 연결을 중요하게 생각하면서도 어느 정도 객관성을 유지할 수 있어요. 다른 사람의 감정을 잘 이해하는 편이죠.",
-        emoji: "💕",
-        compatible: ["f", "F", "t"],
-        incompatible: ["T"]
+        emoji: "💕"
     },
     F: {
-        title: "매우 F형 - 감정 중요",
+        title: "소문자 f - 7r끔 Lr는 눈물을 흘린ㄷr",
         description: "당신은 완전한 감성파입니다! 감정과 진심의 연결을 가장 중요하게 생각하는 타입이에요. 다른 사람의 감정에 깊이 공감하고 위로해주는 능력이 뛰어나죠.",
-        emoji: "💖",
-        compatible: ["F", "f"],
-        incompatible: ["T", "t"]
+        emoji: "💖"
     }
 };
 
@@ -131,7 +120,6 @@ let userName = '';
 const mainPage = document.getElementById('main-page');
 const questionPage = document.getElementById('question-page');
 const resultPage = document.getElementById('result-page');
-const adminPage = document.getElementById('admin-page');
 const startBtn = document.getElementById('start-btn');
 const userNameInput = document.getElementById('user-name');
 const userNameDisplay = document.getElementById('user-name-display');
@@ -141,42 +129,17 @@ const currentQuestionSpan = document.getElementById('current-question');
 const progressFill = document.querySelector('.progress-fill');
 const shareBtn = document.getElementById('share-btn');
 const retryBtn = document.getElementById('retry-btn');
-const adminBtn = document.getElementById('admin-btn');
-const closeAdminBtn = document.getElementById('close-admin-btn');
-const questionList = document.getElementById('question-list');
-const saveQuestionsBtn = document.getElementById('save-questions-btn');
-const resetQuestionsBtn = document.getElementById('reset-questions-btn');
 
 // 이벤트 리스너
 startBtn.addEventListener('click', startTest);
 optionBtns.forEach(btn => btn.addEventListener('click', selectOption));
 shareBtn.addEventListener('click', shareResult);
 retryBtn.addEventListener('click', retryTest);
-adminBtn.addEventListener('click', openAdminPage);
-closeAdminBtn.addEventListener('click', closeAdminPage);
-saveQuestionsBtn.addEventListener('click', saveQuestions);
-resetQuestionsBtn.addEventListener('click', resetQuestions);
-userNameInput.addEventListener('input', validateName);
-
-// 이름 입력 검증
-function validateName() {
-    const name = userNameInput.value.trim();
-    if (name.length > 0) {
-        startBtn.disabled = false;
-        startBtn.textContent = '시작하기';
-    } else {
-        startBtn.disabled = true;
-        startBtn.textContent = '이름을 입력해주세요';
-    }
-}
 
 // 테스트 시작
 function startTest() {
-    userName = userNameInput.value.trim();
-    if (userName.length === 0) {
-        alert('이름을 입력해주세요!');
-        return;
-    }
+    // 이름이 입력되지 않으면 기본값 사용
+    userName = userNameInput.value.trim() || '소다스쿨 신입생';
     
     currentQuestion = 0;
     score = 0;
@@ -235,31 +198,6 @@ function showResult() {
     document.getElementById('result-description').textContent = result.description;
     document.getElementById('result-emoji').textContent = result.emoji;
     
-    // 호환성 표시
-    const compatibleTypes = document.getElementById('compatible-types');
-    const incompatibleTypes = document.getElementById('incompatible-types');
-    
-    compatibleTypes.innerHTML = '';
-    incompatibleTypes.innerHTML = '';
-    
-    result.compatible.forEach(type => {
-        const typeItem = document.createElement('div');
-        typeItem.className = 'type-item';
-        typeItem.textContent = type === 'T' ? '매우 T형' : 
-                              type === 't' ? '비교적 T형' :
-                              type === 'f' ? '비교적 F형' : '매우 F형';
-        compatibleTypes.appendChild(typeItem);
-    });
-    
-    result.incompatible.forEach(type => {
-        const typeItem = document.createElement('div');
-        typeItem.className = 'type-item';
-        typeItem.textContent = type === 'T' ? '매우 T형' : 
-                              type === 't' ? '비교적 T형' :
-                              type === 'f' ? '비교적 F형' : '매우 F형';
-        incompatibleTypes.appendChild(typeItem);
-    });
-    
     showPage(resultPage);
 }
 
@@ -268,79 +206,8 @@ function showPage(page) {
     mainPage.classList.remove('active');
     questionPage.classList.remove('active');
     resultPage.classList.remove('active');
-    adminPage.classList.remove('active');
     
     page.classList.add('active');
-}
-
-// 관리자 페이지 열기
-function openAdminPage() {
-    showPage(adminPage);
-    loadQuestionEditor();
-}
-
-// 관리자 페이지 닫기
-function closeAdminPage() {
-    showPage(mainPage);
-}
-
-// 질문 편집기 로드
-function loadQuestionEditor() {
-    questionList.innerHTML = '';
-    
-    questions.forEach((question, index) => {
-        const questionItem = document.createElement('div');
-        questionItem.className = 'question-item';
-        questionItem.innerHTML = `
-            <h3>질문 ${index + 1}</h3>
-            <input type="text" class="question-input" value="${question.question}" data-index="${index}" data-field="question">
-            <div class="option-inputs">
-                <input type="text" class="option-input" value="${question.options[0]}" data-index="${index}" data-field="option0" placeholder="T 성향 옵션">
-                <input type="text" class="option-input" value="${question.options[1]}" data-index="${index}" data-field="option1" placeholder="F 성향 옵션">
-            </div>
-        `;
-        questionList.appendChild(questionItem);
-    });
-    
-    // 입력 필드 이벤트 리스너 추가
-    const inputs = questionList.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.addEventListener('input', updateQuestion);
-    });
-}
-
-// 질문 업데이트
-function updateQuestion(event) {
-    const input = event.target;
-    const index = parseInt(input.dataset.index);
-    const field = input.dataset.field;
-    const value = input.value;
-    
-    if (field === 'question') {
-        questions[index].question = value;
-    } else if (field === 'option0') {
-        questions[index].options[0] = value;
-    } else if (field === 'option1') {
-        questions[index].options[1] = value;
-    }
-}
-
-// 질문 저장
-function saveQuestions() {
-    // 로컬 스토리지에 저장
-    localStorage.setItem('customQuestions', JSON.stringify(questions));
-    alert('질문이 저장되었습니다!');
-}
-
-// 질문 복원
-function resetQuestions() {
-    if (confirm('기본 질문으로 복원하시겠습니까?')) {
-        questions.length = 0;
-        defaultQuestions.forEach(q => questions.push({...q}));
-        localStorage.removeItem('customQuestions');
-        loadQuestionEditor();
-        alert('기본 질문으로 복원되었습니다!');
-    }
 }
 
 // 결과 공유
@@ -376,23 +243,11 @@ function shareResult() {
 // 다시하기
 function retryTest() {
     userNameInput.value = '';
-    validateName();
     showPage(mainPage);
 }
 
 // 페이지 로드 시 초기화
 document.addEventListener('DOMContentLoaded', () => {
-    // 저장된 질문 불러오기
-    const savedQuestions = localStorage.getItem('customQuestions');
-    if (savedQuestions) {
-        const parsed = JSON.parse(savedQuestions);
-        questions.length = 0;
-        parsed.forEach(q => questions.push(q));
-    }
-    
-    // 이름 입력 필드 초기화
-    validateName();
-    
     // 광고 플레이스홀더 애니메이션
     const adPlaceholders = document.querySelectorAll('.ad-placeholder');
     adPlaceholders.forEach(placeholder => {

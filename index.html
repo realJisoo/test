@@ -13,7 +13,19 @@
         <div class="container">
             <div class="header">
                 <h1 class="title">나는 대문자T? 대문자F?</h1>
-                <p class="subtitle">나이는 어떤 타입일까? 오열하는 MBTI F참가자? 너 T발 C야?</p>
+                <p class="subtitle">나는 어떤 타입일까? 너 T발 C야? 오열하는 MBTI F참가자? </p>
+            </div>
+            
+            <!-- 메인 일러스트 영역 -->
+            <div class="main-illustration">
+                <img src="images/main-illustration.png" alt="메인 일러스트" class="main-illustration-img">
+                <!-- 
+                이미지 파일명: main-illustration.png
+                권장 사이즈: 300px × 300px
+                권장 해상도: 72dpi (웹용)
+                파일 형식: PNG (투명 배경 지원)
+                파일 위치: images/ 폴더
+                -->
             </div>
             
             <div class="character-container">
@@ -35,16 +47,11 @@
             <!-- 이름 입력 필드 -->
             <div class="name-input-container">
                 <label for="user-name" class="name-label">이름을 입력해주세요</label>
-                <input type="text" id="user-name" class="name-input" placeholder="이름을 입력하세요" maxlength="10">
-                <p class="name-hint">이름을 입력하고 시작해주세요!</p>
+                <input type="text" id="user-name" class="name-input" placeholder="소다스쿨 신입생" maxlength="10">
+                <p class="name-hint">이름을 입력하지 않으면 '소다스쿨 신입생'으로 시작됩니다!</p>
             </div>
             
-            <button id="start-btn" class="start-button" disabled>이름을 입력해주세요</button>
-            
-            <!-- 관리자 버튼 -->
-            <div class="admin-section">
-                <button id="admin-btn" class="admin-button">질문 관리</button>
-            </div>
+            <button id="start-btn" class="start-button">시작하기</button>
             
             <!-- 광고 배너 영역 -->
             <div class="ad-container">
@@ -93,19 +100,20 @@
                 <p id="result-description" class="result-description"></p>
             </div>
             
-            <div class="result-character">
-                <div id="result-emoji" class="result-emoji"></div>
+            <!-- 결과 일러스트 영역 -->
+            <div class="result-illustration">
+                <img src="images/result-illustration.png" alt="결과 일러스트" class="result-illustration-img">
+                <!-- 
+                이미지 파일명: result-illustration.png
+                권장 사이즈: 400px × 400px
+                권장 해상도: 72dpi (웹용)
+                파일 형식: PNG (투명 배경 지원)
+                파일 위치: images/ 폴더
+                -->
             </div>
             
-            <div class="compatibility-section">
-                <div class="compatibility-group">
-                    <h3>나랑 잘 맞는 유형</h3>
-                    <div id="compatible-types" class="type-list"></div>
-                </div>
-                <div class="compatibility-group">
-                    <h3>나랑 안 맞는 유형</h3>
-                    <div id="incompatible-types" class="type-list"></div>
-                </div>
+            <div class="result-character">
+                <div id="result-emoji" class="result-emoji"></div>
             </div>
             
             <div class="action-buttons">
@@ -126,27 +134,6 @@
                         <p>광고 영역</p>
                         <small>Google AdSense 배너</small>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 관리자 페이지 -->
-    <div id="admin-page" class="page">
-        <div class="container">
-            <div class="admin-header">
-                <h2 class="admin-title">질문 관리</h2>
-                <button id="close-admin-btn" class="close-admin-btn">✕</button>
-            </div>
-            
-            <div class="question-editor">
-                <div id="question-list" class="question-list">
-                    <!-- 질문들이 동적으로 생성됩니다 -->
-                </div>
-                
-                <div class="admin-actions">
-                    <button id="save-questions-btn" class="save-questions-btn">저장하기</button>
-                    <button id="reset-questions-btn" class="reset-questions-btn">기본값으로 복원</button>
                 </div>
             </div>
         </div>
