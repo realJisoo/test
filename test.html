@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나는 대문자T? 대문자F? - MBTI 심리테스트</title>
+    <link rel="stylesheet" href="test-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 메인 페이지 -->
+    <div id="main-page" class="page active">
+        <div class="container">
+            <div class="header">
+                <button onclick="goToHome()" class="home-btn">← 홈으로</button>
+                <h1 class="title">나는 어떤 타입?<br>대문자T?<br>대문자F?</h1>
+                <p class="subtitle">나는 어떤 타입일까?<br>너 T발 C야?<br>오열하는 MBTI F참가자? </p>
+            </div>
+            
+            <!-- 메인 일러스트 영역 -->
+            <div class="main-illustration">
+                <img src="images/main-illustration.png" alt="메인 일러스트" class="main-illustration-img">
+            </div>
+            
+            <div class="character-container">
+                <div class="character t-character">
+                    <div class="pixel-art">🤖</div>
+                    <p>로봇 T형</p>
+                </div>
+                <div class="character f-character">
+                    <div class="pixel-art">💕</div>
+                    <p>감성 F형</p>
+                </div>
+            </div>
+            
+            <div class="description">
+                <p>MBTI의 T/F를 재미 위주로 해석한 테스트입니다!</p>
+                <p>총 12개의 질문으로 당신의 성향을 알아보세요.</p>
+            </div>
+            
+            <!-- 이름 입력 필드 -->
+            <div class="name-input-container">
+                <label for="user-name" class="name-label">이름을 입력해주세요</label>
+                <input type="text" id="user-name" class="name-input" placeholder="소다스쿨 신입생" maxlength="10">
+                <p class="name-hint">이름을 입력하지 않으면 '소다스쿨 신입생'으로 시작됩니다!</p>
+            </div>
+            
+            <button id="start-btn" class="start-button">시작하기</button>
+        </div>
+    </div>
+
+    <!-- 질문 페이지 -->
+    <div id="question-page" class="page">
+        <div class="container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+                <span class="progress-text">질문 <span id="current-question">1</span>/12</span>
+            </div>
+            
+            <div class="user-info">
+                <span id="user-name-display" class="user-name-display"></span>님의 테스트
+            </div>
+            
+            <div class="question-container">
+                <h2 id="question-text" class="question-text"></h2>
+                
+                <div class="options">
+                    <button class="option-btn" data-value="1">
+                        <span class="option-text"></span>
+                    </button>
+                    <button class="option-btn" data-value="-1">
+                        <span class="option-text"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 결과 페이지 -->
+    <div id="result-page" class="page">
+        <div class="container">
+            <div class="result-header">
+                <h2 id="result-title" class="result-title"></h2>
+                <p id="result-description" class="result-description"></p>
+            </div>
+            
+            <!-- 결과 일러스트 영역 -->
+            <div class="result-illustration">
+                <img src="images/result-illustration.png" alt="결과 일러스트" class="result-illustration-img">
+            </div>
+            
+            <div class="result-character">
+                <div id="result-emoji" class="result-emoji"></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="share-btn" class="share-button">결과 공유하기</button>
+                <button id="retry-btn" class="retry-button">다시하기</button>
+                <button onclick="goToHome()" class="home-button">홈으로</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="test-script.js"></script>
+</body>
+</html>
