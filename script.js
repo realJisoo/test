@@ -96,11 +96,17 @@ function loadRecommendedContent() {
 // 모든 콘텐츠 로드
 function loadAllContent() {
     allContent.innerHTML = '';
-    
-    contentList.forEach(item => {
+    contentList.slice(0, 9).forEach(item => {
         const contentElement = createContentElement(item);
         allContent.appendChild(contentElement);
     });
+    // 모두보기 버튼 이벤트 연결
+    const viewAllBtn = document.getElementById('viewAllBtn');
+    if (viewAllBtn) {
+        viewAllBtn.onclick = function() {
+            window.location.href = 'all-contents.html';
+        };
+    }
 }
 
 // 콘텐츠 요소 생성
